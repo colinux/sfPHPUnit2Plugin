@@ -191,7 +191,7 @@ Executing all tests (process isolation option required!):
 ## Snippets ##
 Loading fixtures in your test:
 
-      public function _start()
+      protected function _start()
       {
         new sfDatabaseManager(ProjectConfiguration::getApplicationConfiguration('frontend', 'test', true));
         Doctrine_Core::loadData(sfConfig::get('sf_data_dir').'/fixtures');
