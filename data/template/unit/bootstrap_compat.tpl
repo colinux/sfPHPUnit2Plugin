@@ -11,8 +11,11 @@
 $_test_dir = realpath(dirname(__FILE__).'/../..');
 $_root_dir = $_test_dir.'/..';
 
+// configuration
 require_once($_root_dir.'/config/ProjectConfiguration.class.php');
 $configuration = new ProjectConfiguration($_root_dir);
+
+// lime
 include($configuration->getSymfonyLibDir().'/vendor/lime/lime.php');
 
 

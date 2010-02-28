@@ -10,6 +10,7 @@
 
 $_test_dir = realpath(dirname(__FILE__).'/../..');
 $_root_dir = $_test_dir.'/..';
+
 // configuration
 require_once $_root_dir.'/config/ProjectConfiguration.class.php';
 $configuration = ProjectConfiguration::hasActive() ? ProjectConfiguration::getActive() : new ProjectConfiguration(realpath($_root_dir));
@@ -17,7 +18,7 @@ $configuration = ProjectConfiguration::hasActive() ? ProjectConfiguration::getAc
 // lime
 require_once $configuration->getSymfonyLibDir().'/vendor/lime/lime.php';
 
-// autoloader
+// autoloader for sfPHPUnit2Plugin libs
 $autoload = sfSimpleAutoload::getInstance(sfConfig::get('sf_cache_dir').'/project_autoload.cache');
 $autoload->loadConfiguration(sfFinder::type('file')->name('autoload.yml')->in(array(
   sfConfig::get('sf_symfony_lib_dir').'/config/config',

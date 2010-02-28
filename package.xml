@@ -13,12 +13,12 @@
 		<email>dev@frankstelzer.de</email>
 		<active>yes</active>
 	</lead>
-	<date>2010-02-25</date>
-	<time>09:20:00</time>
+	<date>2010-03-01</date>
+	<time>10:00:00</time>
 
 	<version>
-		<release>0.8.2</release>
-		<api>0.8.2</api>
+		<release>0.8.3</release>
+		<api>0.8.3</api>
 	</version>
 
 	<stability>
@@ -91,6 +91,23 @@
 	<phprelease />
 
 	<changelog>
+
+		<release>
+			<version>
+				<release>0.8.3</release>
+				<api>0.8.3</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<license uri="http://www.symfony-project.com/license">MIT license</license>
+			<date>2010-03-01</date>
+			<license>MIT</license>
+			<notes>
+				* added compatibility task for symfony 1.2
+			</notes>
+		</release>
 
 		<release>
 			<version>
