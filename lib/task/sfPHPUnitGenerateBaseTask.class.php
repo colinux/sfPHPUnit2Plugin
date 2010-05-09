@@ -29,6 +29,16 @@ abstract class sfPHPUnitGenerateBaseTask extends sfBaseTask
   }
 
   /**
+   * Returns data dir of project
+   *
+   * @return string
+   */
+  protected function getProjectDataDir()
+  {
+    return sfConfig::get('sf_data_dir');
+  }
+
+  /**
    * Returns the test dir to the PHPUnit test cases
    *
    * @return string
@@ -71,7 +81,15 @@ abstract class sfPHPUnitGenerateBaseTask extends sfBaseTask
    */
   protected function getTemplate( $templateName )
   {
-    $templatePath = $this->getPluginDir().'/data/template/' . $templateName;
+    // check if template does exist in custom dir
+    $templatePath = $this->getProjectDataDir().'/sfPHPUnit2Plugin/template/' . $templateName;
+
+    // custom template does not exist, take the plugin template
+    if (!file_exists($templatePath))
+    {
+      $templatePath = $this->getPluginDir().'/data/template/' . $templateName;
+    }
+
     if (!file_exists($templatePath))
     {
       throw new sfCommandException(sprintf('Template "%s" does not exist.', $templateName));
