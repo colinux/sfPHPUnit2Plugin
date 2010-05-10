@@ -61,10 +61,20 @@ abstract class sfPHPUnitGenerateBaseTask extends sfBaseTask
     // does bootstrap dir already exists?
     if (!file_exists($bootstrapDir))
     {
-      // create bootstrap dir and copy bootstrap files there
+      // create bootstrap dir
+      $this->logSection('dir+', $bootstrapDir);
       mkdir($bootstrapDir, 0755, true);
-      copy($templateDir.'/unit/bootstrap.tpl', $bootstrapDir.'/unit.php');
-      copy($templateDir.'/functional/bootstrap.tpl', $bootstrapDir.'/functional.php');
+    }
+
+    // copy bootstrap files
+    $bootstrapFiles = array('/unit/bootstrap.tpl' => '/unit.php', '/functional/bootstrap.tpl' => '/functional.php', '/selenium/bootstrap.tpl' => '/selenium.php');
+    foreach ($bootstrapFiles as $source => $target)
+    {
+      if (!file_exists($bootstrapDir.$target))
+      {
+        $this->logSection('file+', $bootstrapDir.$target);
+        copy($templateDir.$source, $bootstrapDir.$target);
+      }
     }
 
     return true;

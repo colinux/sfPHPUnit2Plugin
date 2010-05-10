@@ -3,20 +3,22 @@
 /*
  * This file is part of the sfPHPUnit2Plugin package.
  * (c) 2010 Frank Stelzer <dev@frankstelzer.de>
+ * (c) 2010 Richard Shank <develop@zestic.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
 /**
- * Launches PHPUnit functional tests.
+ * Launches PHPUnit Selenium tests.
  *
  * @package    sfPHPUnit2Plugin
  * @subpackage task
  *
  * @author     Frank Stelzer <dev@frankstelzer.de>
+ * @author     Richard Shank <develop@zestic.com>
  */
-class sfPHPUnitFunctionalTask extends sfPHPUnitBaseTask
+class sfPHPUnitSeleniumTask extends sfPHPUnitBaseTask
 {
   /**
    * @see sfTask
@@ -34,13 +36,13 @@ class sfPHPUnitFunctionalTask extends sfPHPUnitBaseTask
     ));
 
     $this->namespace        = 'phpunit';
-    $this->name             = 'test-functional';
-    $this->briefDescription = 'Launches functional tests';
+    $this->name             = 'test-selenium';
+    $this->briefDescription = 'Launches selenium tests';
     $this->detailedDescription = <<<EOF
-The [phpunit:test-functional|INFO] launches functional tests.
+The [phpunit:test-selenium|INFO] launches selenium tests.
 Call it with:
 
-  [php symfony phpunit:test-functional|INFO]
+  [php symfony phpunit:test-selenium|INFO]
 EOF;
   }
 
@@ -51,10 +53,10 @@ EOF;
   {
     if ($options['base'])
     {
-      return $options['base'].'/functional'.($arguments['application']? '/'.$arguments['application'] : '');
+      return $options['base'].'/selenium'.($arguments['application']? '/'.$arguments['application'] : '');
     }
 
-    return 'test/phpunit/functional'.($arguments['application']? '/'.$arguments['application'] : '');
+    return 'test/phpunit/selenium'.($arguments['application']? '/'.$arguments['application'] : '');
   }
 
   /**

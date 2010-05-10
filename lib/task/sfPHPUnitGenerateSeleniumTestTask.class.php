@@ -3,20 +3,22 @@
 /*
  * This file is part of the sfPHPUnit2Plugin package.
  * (c) 2010 Frank Stelzer <dev@frankstelzer.de>
+ * (c) 2010 Richard Shank <develop@zestic.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
 /**
- * Generates a PHPUnit test file for functional tests.
+ * Generates a PHPUnit test file for Selenium tests.
  *
  * @package    sfPHPUnit2Plugin
  * @subpackage task
  *
  * @author     Frank Stelzer <dev@frankstelzer.de>
+ * @author     Richard Shank <develop@zestic.com>
  */
-class sfPHPUnitGenerateFunctionalTestTask extends sfPHPUnitGenerateBaseTask
+class sfPHPUnitGenerateSeleniumTestTask extends sfPHPUnitGenerateBaseTask
 {
   /**
    * @see sfTask
@@ -33,15 +35,15 @@ class sfPHPUnitGenerateFunctionalTestTask extends sfPHPUnitGenerateBaseTask
     ));
 
     $this->namespace        = 'phpunit';
-    $this->name             = 'generate-functional';
-    $this->briefDescription = 'Generates a test case for functional tests';
+    $this->name             = 'generate-selenium';
+    $this->briefDescription = 'Generates a test case for Selenium tests';
     $this->detailedDescription = <<<EOF
-The [phpunit:generate-functional|INFO] generates a test case for functional tests, which is lateron
+The [phpunit:generate-selenium|INFO] generates a test case for Selenium tests, which is lateron
 executable with PHPUnit.
 
 Call it with:
 
-  [php symfony phpunit:generate-functional|INFO]
+  [php symfony phpunit:generate-selenium|INFO]
 EOF;
   }
 
@@ -52,7 +54,7 @@ EOF;
   {
     $this->createBootstrap();
 
-    $template = $this->getTemplate('functional/functional_test.tpl');
+    $template = $this->getTemplate('selenium/selenium_test.tpl');
 
     $filename = $arguments['controller'] . 'ActionsTest.php';
     $replacePairs = array(
@@ -62,8 +64,8 @@ EOF;
     );
 
     $rendered = $this->renderTemplate($template, $replacePairs);
-    $this->saveFile($rendered, 'functional/'.$arguments['application'].'/'.$filename, $options);
+    $this->saveFile($rendered, 'selenium/'.$arguments['application'].'/'.$filename, $options);
 
-    $this->logSection('help', 'run this test with: ./symfony phpunit:test-functional '.$arguments['application'].' '.$arguments['controller']);
+    $this->logSection('help', 'run this test with: ./symfony phpunit:test-selenium '.$arguments['application'].' '.$arguments['controller']);
   }
 }

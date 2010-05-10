@@ -30,6 +30,7 @@ class sfPHPUnitUnitTask extends sfPHPUnitBaseTask
     $this->addOptions(array(
     new sfCommandOption('options', null, sfCommandOption::PARAMETER_REQUIRED, 'Options for PHPUnit which are directly passed to the test runner'),
     new sfCommandOption('dir', null, sfCommandOption::PARAMETER_REQUIRED, 'The subfolder the test case is located in'),
+    new sfCommandOption('base', null, sfCommandOption::PARAMETER_REQUIRED, 'The base folder path where custom test cases are located in'),
     ));
 
     $this->namespace        = 'phpunit';
@@ -48,6 +49,11 @@ EOF;
    */
   protected function getRelativePath($arguments = array(), $options = array())
   {
+    if ($options['base'])
+    {
+      return $options['base'].'/unit'.($options['dir']? '/'.$options['dir'] : '');
+    }
+
     return 'test/phpunit/unit'.($options['dir']? '/'.$options['dir'] : '');
   }
 

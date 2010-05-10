@@ -13,12 +13,12 @@
 		<email>dev@frankstelzer.de</email>
 		<active>yes</active>
 	</lead>
-	<date>2010-03-01</date>
+	<date>2010-05-13</date>
 	<time>10:00:00</time>
 
 	<version>
-		<release>0.8.3</release>
-		<api>0.8.3</api>
+		<release>0.9</release>
+		<api>0.9</api>
 	</version>
 
 	<stability>
@@ -40,6 +40,10 @@
 						<file role="data" name="bootstrap.tpl" />
 						<file role="data" name="functional_test.tpl" />
 					</dir>
+					<dir name="selenium">
+						<file role="data" name="bootstrap.tpl" />
+						<file role="data" name="selenium_test.tpl" />
+					</dir>
 					<dir name="unit">
 						<file role="data" name="bootstrap.tpl" />
 						<file role="data" name="bootstrap_compat.tpl" />
@@ -57,12 +61,15 @@
 					<file role="data" name="sfPHPUnitGenerateBaseTask.class.php" />
 					<file role="data" name="sfPHPUnitGenerateCompatTask.class.php" />
 					<file role="data" name="sfPHPUnitGenerateFunctionalTestTask.class.php" />
+					<file role="data" name="sfPHPUnitGenerateSeleniumTestTask.class.php" />
 					<file role="data" name="sfPHPUnitGenerateUnitTestTask.class.php" />
+					<file role="data" name="sfPHPUnitSeleniumTask.class.php" />
 					<file role="data" name="sfPHPUnitTestAllTask.class.php" />
 					<file role="data" name="sfPHPUnitUnitTask.class.php" />
 				</dir>
 				<dir name="test">
 					<file role="data" name="sfPHPUnitBaseFunctionalTestCase.class.php" />
+					<file role="data" name="sfPHPUnitBaseSeleniumTestCase.class.php" />
 					<file role="data" name="sfPHPUnitBaseTestCase.class.php" />
 					<file role="data" name="sfPHPUnitTest.class.php" />
 				</dir>
@@ -94,18 +101,21 @@
 
 		<release>
 			<version>
-				<release>0.8.3</release>
-				<api>0.8.3</api>
+				<release>0.9</release>
+				<api>0.9</api>
 			</version>
 			<stability>
 				<release>beta</release>
 				<api>beta</api>
 			</stability>
 			<license uri="http://www.symfony-project.com/license">MIT license</license>
-			<date>2010-03-01</date>
+			<date>2010-05-13</date>
 			<license>MIT</license>
 			<notes>
 				* added compatibility task for symfony 1.2
+				* added selenium support (Special Thanks to Richard Shank!)
+        * added experimental support for plugin tests
+        * added possibility to customize skeleton template files
 			</notes>
 		</release>
 
