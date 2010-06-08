@@ -259,7 +259,7 @@ class sfPHPUnitTest extends lime_test
    *
    * @see lime_test#error()
    */
-  public function error($msg)
+  public function error($msg, $file = null, $line = null, array $traces = array())
   {
     $this->diag('ERROR: ' . $msg);
   }
