@@ -17,8 +17,8 @@
 	<time>23:30:00</time>
 
 	<version>
-		<release>0.9</release>
-		<api>0.9</api>
+		<release>0.9.0</release>
+		<api>0.9.0</api>
 	</version>
 
 	<stability>
@@ -59,7 +59,7 @@
 					<file role="data" name="sfPHPUnitBaseTask.class.php" />
 					<file role="data" name="sfPHPUnitFunctionalTask.class.php" />
 					<file role="data" name="sfPHPUnitGenerateBaseTask.class.php" />
-					<file role="data" name="sfPHPUnitGenerateCompatTask.class.php" />
+					<file role="data" name="sfPHPUnitGenerateCompatTestTask.class.php" />
 					<file role="data" name="sfPHPUnitGenerateFunctionalTestTask.class.php" />
 					<file role="data" name="sfPHPUnitGenerateSeleniumTestTask.class.php" />
 					<file role="data" name="sfPHPUnitGenerateUnitTestTask.class.php" />
@@ -101,8 +101,8 @@
 
 		<release>
 			<version>
-				<release>0.9</release>
-				<api>0.9</api>
+				<release>0.9.0</release>
+				<api>0.9.0</api>
 			</version>
 			<stability>
 				<release>beta</release>
@@ -114,9 +114,9 @@
 			<notes>
 				* added compatibility task for symfony 1.2
 				* added selenium support (Special Thanks to Richard Shank!)
-        * added experimental support for plugin tests
-        * added possibility to customize skeleton template files
-        * adepted changes to latest changes in the lime_test class
+				* added experimental support for plugin tests
+				* added possibility to customize skeleton template files
+				* adepted changes to latest changes in the lime_test class
 			</notes>
 		</release>
 
