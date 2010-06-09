@@ -223,6 +223,13 @@ Executing a unit test within a plugin:
         $ # file has to be located in plugins/sfPHPUnit2Plugin/test/unit/fooPluginTest.php
         $ ./symfony phpunit:test-unit --base="plugins/sfPHPUnit2Plugin/test" fooPlugin
 
+## Customizing templates ##
+The plugin provides customization of the used templates located in *sfPHPUnit2Plugin/data/template*. If a template content has to be overwritten, then add a new template file in your data dir: *your_project/data/sfPHPUnit2Plugin/template*. The file and folder structure has to be the same like it is in the plugin.
+When a template file does not exist in the project data dir, the plugin will take the original template as fallback.
+
+**For example:**
+
+Placing a file in *your_project/data/sfPHPUnit2Plugin/template/unit/unit_test.tpl* will overwrite the content of a unit test template. The next time a unit test is generated, the plugin will use this custom content.
 
 ## Some Hints ##
   * **Functional tests of several applications have to be run with the "process isolation" PHPUnit option (only available in PHPUnit 3.4)!**
@@ -245,6 +252,7 @@ Executing a unit test within a plugin:
 Loading fixtures in your test:
 
 Doctrine:
+
       protected function _start()
       {
         new sfDatabaseManager(ProjectConfiguration::getApplicationConfiguration('frontend', 'test', true));
@@ -252,6 +260,7 @@ Doctrine:
       }
 
 Propel:
+
       protected function _start()
       {
         new sfDatabaseManager(ProjectConfiguration::getApplicationConfiguration('frontend', 'test', true));
@@ -284,3 +293,6 @@ Content of a plugin test file:
           // test something
         }
       }
+
+## TODO ##
+  * add complete support for plugin testing

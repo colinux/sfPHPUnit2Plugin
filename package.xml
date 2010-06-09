@@ -13,8 +13,8 @@
 		<email>dev@frankstelzer.de</email>
 		<active>yes</active>
 	</lead>
-	<date>2010-05-13</date>
-	<time>10:00:00</time>
+	<date>2010-06-09</date>
+	<time>23:30:00</time>
 
 	<version>
 		<release>0.9</release>
@@ -109,13 +109,14 @@
 				<api>beta</api>
 			</stability>
 			<license uri="http://www.symfony-project.com/license">MIT license</license>
-			<date>2010-05-13</date>
+			<date>2010-06-09</date>
 			<license>MIT</license>
 			<notes>
 				* added compatibility task for symfony 1.2
 				* added selenium support (Special Thanks to Richard Shank!)
         * added experimental support for plugin tests
         * added possibility to customize skeleton template files
+        * adepted changes to latest changes in the lime_test class
 			</notes>
 		</release>
 
