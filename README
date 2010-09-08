@@ -217,6 +217,10 @@ Executing all functional tests with process isolation (PHPUnit 3.4 required):
 Executing all tests (process isolation option required!):
 
         $ ./symfony phpunit:test-all --options="--colors --process-isolation"
+        
+Executing all tests using custom test suites defined in the phpunit.xml(.dist):
+
+        $ ./symfony phpunit:test-all --configuration
 
 Executing a unit test within a plugin:
 
@@ -237,7 +241,9 @@ Placing a file in *your_project/data/sfPHPUnit2Plugin/template/unit/unit_test.tp
   * You do not like the PHPUnit syntax? Use **$this->getTest()** to retrieve a instance of sfPHPUnitTest, which mimics the lime-like interface!
   * Use the **_start** and **_end** methods for doing something just before and after a test (please do not overwrite the setUp and tearDown methods)!
   * implement the **getApplication** method in your unit test and call **getContext** afterwards for creating an according sfContext instance
-  * add a ***[phpunit.xml](http://www.phpunit.de/manual/3.4/en/appendixes.configuration.html)*** in the project's root dir for defining default configuration options for PHPUnit calls
+  * add a ***[phpunit.xml.dist](http://test.ical.ly/2010/08/24/best-practice-how-to-ship-phpunit-configuration/)*** in the project's root dir for defining **default** configuration options for PHPUnit calls. Thanks Christian for pointing this out :)
+  * add a ***[phpunit.xml](http://www.phpunit.de/manual/3.4/en/appendixes.configuration.html)*** in the project's root dir for defining **individual** configuration options for PHPUnit calls
+  
 
         <phpunit
           colors="true"
@@ -245,6 +251,15 @@ Placing a file in *your_project/data/sfPHPUnit2Plugin/template/unit/unit_test.tp
           convertNoticesToExceptions="true"
           convertWarningsToExceptions="true"
           stopOnFailure="true">
+          
+          <testsuites>
+            <testsuite name="Unit Tests">
+              <directory>test/phpunit/unit/</directory>
+            </testsuite>
+             <testsuite name="Functional Tests">
+               <directory>test/phpunit/functional/</directory>
+            </testsuite>
+          </testsuites>
         </phpunit>
 
 

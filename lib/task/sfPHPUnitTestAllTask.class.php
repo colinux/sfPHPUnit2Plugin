@@ -28,6 +28,7 @@ class sfPHPUnitTestAllTask extends sfBaseTask
 
     $this->addOptions(array(
     new sfCommandOption('options', null, sfCommandOption::PARAMETER_REQUIRED, 'Options for PHPUnit which are directly passed to the test runner'),
+    new sfCommandOption('configuration', null, sfCommandOption::PARAMETER_NONE, 'Flag if default configuration of phpunit.xml should be used'),
     ));
 
     $this->namespace        = 'phpunit';
@@ -50,7 +51,7 @@ EOF;
    */
   protected function execute($arguments = array(), $options = array())
   {
-    $cmd = 'phpunit '.$options['options'].' test/phpunit/';
+    $cmd = 'phpunit '.$options['options'].($options['configuration']? '' : ' test/phpunit/');
 
     passthru($cmd);
   }
