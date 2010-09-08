@@ -241,7 +241,7 @@ Placing a file in *your_project/data/sfPHPUnit2Plugin/template/unit/unit_test.tp
   * You do not like the PHPUnit syntax? Use **$this->getTest()** to retrieve a instance of sfPHPUnitTest, which mimics the lime-like interface!
   * Use the **_start** and **_end** methods for doing something just before and after a test (please do not overwrite the setUp and tearDown methods)!
   * implement the **getApplication** method in your unit test and call **getContext** afterwards for creating an according sfContext instance
-  * add a ***[phpunit.xml.dist](http://test.ical.ly/2010/08/24/best-practice-how-to-ship-phpunit-configuration/)*** in the project's root dir for defining **default** configuration options for PHPUnit calls. Thanks Christian for pointing this out :)
+  * add a ***[phpunit.xml.dist](http://test.ical.ly/2010/08/24/best-practice-how-to-ship-phpunit-configuration/)*** in the project's root dir for defining **default** configuration options for PHPUnit calls. Thanks [Christian](http://test.ical.ly/2010/08/24/best-practice-how-to-ship-phpunit-configuration/) for pointing this out :)
   * add a ***[phpunit.xml](http://www.phpunit.de/manual/3.4/en/appendixes.configuration.html)*** in the project's root dir for defining **individual** configuration options for PHPUnit calls
   
 
