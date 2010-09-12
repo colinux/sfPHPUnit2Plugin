@@ -101,6 +101,24 @@
 
 		<release>
 			<version>
+				<release>0.9.1</release>
+				<api>0.9.1</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<license uri="http://www.symfony-project.com/license">MIT license</license>
+			<date>2010-06-09</date>
+			<license>MIT</license>
+			<notes>
+				* added best practise hint for phpunit.xml(.dist) (thanks to Christian Schaefer, http://test.ical.ly/2010/08/24/best-practice-how-to-ship-phpunit-configuration/ )
+				* added return value of the PHPUnit command line executions (thanks to Brent Shaffer)
+			</notes>
+		</release>
+		
+		<release>
+			<version>
 				<release>0.9.0</release>
 				<api>0.9.0</api>
 			</version>

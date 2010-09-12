@@ -88,6 +88,10 @@ abstract class sfPHPUnitBaseTask extends sfBaseTask
 
     // $this->logSection('debug', $cmd);
 
-    passthru($cmd);
+    $output = '';
+
+    passthru($cmd, $output);
+
+    return $output;
   }
 }

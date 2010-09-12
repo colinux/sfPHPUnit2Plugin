@@ -53,6 +53,10 @@ EOF;
   {
     $cmd = 'phpunit '.$options['options'].($options['configuration']? '' : ' test/phpunit/');
 
-    passthru($cmd);
+    $output = '';
+
+    passthru($cmd, $output);
+
+    return $output;
   }
 }
