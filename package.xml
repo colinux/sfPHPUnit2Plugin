@@ -112,8 +112,9 @@
 			<date>2010-06-09</date>
 			<license>MIT</license>
 			<notes>
-				* added best practise hint for phpunit.xml(.dist) (thanks to Christian Schaefer, http://test.ical.ly/2010/08/24/best-practice-how-to-ship-phpunit-configuration/ )
+				* added task for generating the default phpunit.xml.dist configuration file
 				* added return value of the PHPUnit command line executions (thanks to Brent Shaffer)
+				* added best practise hint for phpunit.xml(.dist) (thanks to Christian Schaefer, http://test.ical.ly/2010/08/24/best-practice-how-to-ship-phpunit-configuration/ )
 			</notes>
 		</release>
 		

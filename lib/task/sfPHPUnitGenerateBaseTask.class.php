@@ -89,7 +89,7 @@ abstract class sfPHPUnitGenerateBaseTask extends sfBaseTask
    *
    * @return string
    */
-  protected function getTemplate( $templateName )
+  protected function getTemplate($templateName)
   {
     // check if template does exist in custom dir
     $templatePath = $this->getProjectDataDir().'/sfPHPUnit2Plugin/template/' . $templateName;
@@ -118,7 +118,7 @@ abstract class sfPHPUnitGenerateBaseTask extends sfBaseTask
    */
   protected function renderTemplate($content, array $replacePairs)
   {
-    return strtr( $content, $replacePairs );
+    return strtr($content, $replacePairs);
   }
 
   /**
