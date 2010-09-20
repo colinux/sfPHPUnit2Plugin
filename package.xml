@@ -13,12 +13,12 @@
 		<email>dev@frankstelzer.de</email>
 		<active>yes</active>
 	</lead>
-	<date>2010-06-09</date>
-	<time>23:30:00</time>
+	<date>2010-09-20</date>
+	<time>08:00:00</time>
 
 	<version>
-		<release>0.9.0</release>
-		<api>0.9.0</api>
+		<release>0.9.1</release>
+		<api>0.9.1</api>
 	</version>
 
 	<stability>
@@ -40,6 +40,7 @@
 						<file role="data" name="bootstrap.tpl" />
 						<file role="data" name="functional_test.tpl" />
 					</dir>
+					<file role="data" name="phpunit.xml.dist.tpl" />
 					<dir name="selenium">
 						<file role="data" name="bootstrap.tpl" />
 						<file role="data" name="selenium_test.tpl" />
@@ -60,6 +61,7 @@
 					<file role="data" name="sfPHPUnitFunctionalTask.class.php" />
 					<file role="data" name="sfPHPUnitGenerateBaseTask.class.php" />
 					<file role="data" name="sfPHPUnitGenerateCompatTestTask.class.php" />
+					<file role="data" name="sfPHPUnitGenerateConfigurationTask.class.php" />
 					<file role="data" name="sfPHPUnitGenerateFunctionalTestTask.class.php" />
 					<file role="data" name="sfPHPUnitGenerateSeleniumTestTask.class.php" />
 					<file role="data" name="sfPHPUnitGenerateUnitTestTask.class.php" />
@@ -109,7 +111,7 @@
 				<api>beta</api>
 			</stability>
 			<license uri="http://www.symfony-project.com/license">MIT license</license>
-			<date>2010-06-09</date>
+			<date>2010-09-20</date>
 			<license>MIT</license>
 			<notes>
 				* added task for generating the default phpunit.xml.dist configuration file
