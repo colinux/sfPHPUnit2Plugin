@@ -33,6 +33,13 @@ abstract class sfPHPUnitBaseTestCase extends PHPUnit_Framework_TestCase
   private $context = null;
 
   /**
+   * The sfApplicationConfiguration instance
+   *
+   * @var sfApplicationConfiguration
+   */
+  private $applicationConfiguration = null;
+
+  /**
    * Dev hook for custom "setUp" stuff
    * Overwrite it in your test class, if you have to execute stuff before a test is called.
    */
@@ -65,6 +72,22 @@ abstract class sfPHPUnitBaseTestCase extends PHPUnit_Framework_TestCase
   }
 
   /**
+   * Returns current sfApplicationConfiguration instance.
+   * If no configuration does currently exist, a new one will be created.
+   *
+   * @return sfApplicationConfiguration
+   */
+  protected function getApplicationConfiguration()
+  {
+  	if (is_null($this->applicationConfiguration))
+  	{
+  		$this->applicationConfiguration = ProjectConfiguration::getApplicationConfiguration($this->getApplication(), $this->getEnvironment(), true);
+  	}
+
+  	return $this->applicationConfiguration;
+  }
+
+  /**
    * A unit test does not have loaded the whole symfony context on start-up, but
    * you can create a working instance if you need it with this method
    * (taken from the bootstrap file).
@@ -76,8 +99,7 @@ abstract class sfPHPUnitBaseTestCase extends PHPUnit_Framework_TestCase
     if (!$this->context)
     {
       // ProjectConfiguration is already required in the bootstrap file
-      $configuration = ProjectConfiguration::getApplicationConfiguration($this->getApplication(), $this->getEnvironment(), true);
-      $this->context = sfContext::createInstance($configuration);
+      $this->context = sfContext::createInstance($this->getApplicationConfiguration());
     }
 
     return $this->context;
@@ -96,6 +118,18 @@ abstract class sfPHPUnitBaseTestCase extends PHPUnit_Framework_TestCase
     }
 
     return $this->test;
+  }
+
+  /**
+   * Prints a debug message and dumps the
+   * assigned variable
+   *
+   * @param mixed $mixed The content which should be dumped
+   * @param string $message A debug message
+   */
+  protected function debug($mixed, $message = 'debug')
+  {
+  	$this->getTest()->diag(sprintf('[%s] %s', $message, var_export($mixed, true)));
   }
 
   /**
