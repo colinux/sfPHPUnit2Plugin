@@ -67,6 +67,10 @@ EOF;
       }
     }
 
+    //prepend lime class because sfPHPUnitTest class extends lime_test
+    $limeContent = file_get_contents(sfConfig::get('sf_symfony_lib_dir').'/vendor/lime/lime.php');
+    $content = $limeContent . $content;
+
     // remove all starting php tags ...
     $content = str_replace('<?php', '', $content);
 
