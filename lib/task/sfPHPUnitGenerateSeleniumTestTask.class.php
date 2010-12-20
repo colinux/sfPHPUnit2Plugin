@@ -32,6 +32,7 @@ class sfPHPUnitGenerateSeleniumTestTask extends sfPHPUnitGenerateBaseTask
 
     $this->addOptions(array(
     new sfCommandOption('overwrite', null, sfCommandOption::PARAMETER_NONE, 'Forces the task to overwrite any existing files'),
+    new sfCommandOption('template', null, sfCommandOption::PARAMETER_REQUIRED, 'A template name, whithout base dir (like selenium) neither extension'),
     ));
 
     $this->namespace        = 'phpunit';
@@ -54,7 +55,16 @@ EOF;
   {
     $this->createBootstrap();
 
-    $template = $this->getTemplate('selenium/selenium_test.tpl');
+    if ($options['template'])
+    {
+      $templateName = $options['template'];
+    }
+    else
+    {
+      $templateName = 'selenium_test';
+    }
+
+    $template = $this->getTemplate('selenium/'.$templateName.'.tpl');
 
     $filename = $arguments['controller'] . 'ActionsTest.php';
     $replacePairs = array(

@@ -58,11 +58,12 @@ This generation is not done automatically when a new module is generated and has
 ### Options ###
   * **overwrite**: An existing test case is not overwritten by default. Overwritting is enabled with this option.
   * **dir** (unit test only): A subfolder the generated test case should be saved in.
+  * **template**: A template name to use for this test. Templates files should be placed in "data/sfPHPUnitPlugin/template/<test-type>/"
 
 ### Examples ###
 
         $ #test/phpunit/unit/somesubfolder/SomeToolsTest.php
-        $ ./symfony phpunit:generate-unit --dir="somesubfolder" --overwrite SomeTools
+        $ ./symfony phpunit:generate-unit --dir="somesubfolder" --overwrite --template="my_own_template" SomeTools
 
         $ #test/phpunit/functional/frontend/homeActionsTest.php
         $ ./symfony phpunit:generate-functional frontend home
@@ -256,6 +257,11 @@ When a template file does not exist in the project data dir, the plugin will tak
 **For example:**
 
 Placing a file in *your_project/data/sfPHPUnit2Plugin/template/unit/unit_test.tpl* will overwrite the content of a unit test template. The next time a unit test is generated, the plugin will use this custom content.
+
+
+Additionaly, you can use the --template option at the test generation to force usage of a template by its name, like this:
+
+        $ ./symfony phpunit:generate-unit --template="unit_test" MyNewUnitTest
 
 ## Some Hints ##
   * **Functional tests of several applications have to be run with the "process isolation" PHPUnit option (only available in PHPUnit 3.4)!**

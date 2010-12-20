@@ -30,6 +30,7 @@ class sfPHPUnitGenerateFunctionalTestTask extends sfPHPUnitGenerateBaseTask
 
     $this->addOptions(array(
     new sfCommandOption('overwrite', null, sfCommandOption::PARAMETER_NONE, 'Forces the task to overwrite any existing files'),
+    new sfCommandOption('template', null, sfCommandOption::PARAMETER_REQUIRED, 'A template name, whithout base dir (like functional) neither extension'),
     ));
 
     $this->namespace        = 'phpunit';
@@ -52,7 +53,16 @@ EOF;
   {
     $this->createBootstrap();
 
-    $template = $this->getTemplate('functional/functional_test.tpl');
+    if ($options['template'])
+    {
+      $templateName = $options['template'];
+    }
+    else
+    {
+      $templateName = 'functional_test';
+    }
+
+    $template = $this->getTemplate('functional/'.$templateName.'.tpl');
 
     $filename = $arguments['controller'] . 'ActionsTest.php';
     $replacePairs = array(
