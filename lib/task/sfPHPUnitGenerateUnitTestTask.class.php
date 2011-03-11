@@ -67,9 +67,18 @@ EOF;
 
     $filename = $arguments['name'] . 'Test.php';
     $replacePairs = array(
-    '{test_class}' => $arguments['name'],
-    '{dir}' => $options['dir']? '/../..' : '/..',
+      '{test_class}' => $arguments['name'],
     );
+
+    $dir = isset($options['dir'])? '/../..' : '/..';
+
+
+    $replacePairs['{path_to_bootstrap}'] = $dir.'/bootstrap/unit.php';
+
+    if (isset($options['plugin']))
+    {
+      $replacePairs['{path_to_bootstrap}'] = $dir.'/../../../../test/phpunit/bootstrap/unit.php';
+    }
 
     $rendered = $this->renderTemplate($template, $replacePairs);
     $this->saveFile($rendered, 'unit/'.($options['dir']? $options['dir'].'/' : '').$filename, $options);

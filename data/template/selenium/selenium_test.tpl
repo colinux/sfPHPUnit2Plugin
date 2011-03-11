@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__).'/../../bootstrap/selenium.php';
+require_once dirname(__FILE__).'{path_to_bootstrap}';
 
 class selenium_{controller_class}ActionsTest extends sfPHPUnitBaseSeleniumTestCase
 {

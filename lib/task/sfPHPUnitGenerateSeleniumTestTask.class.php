@@ -69,10 +69,17 @@ EOF;
 
     $filename = $arguments['controller'] . 'ActionsTest.php';
     $replacePairs = array(
-    '{controller_class}' => $arguments['application'] . '_' . $arguments['controller'],
-    '{controller_name}' => $arguments['controller'],
-    '{application}' => $arguments['application']
+      '{controller_class}' => $arguments['application'] . '_' . $arguments['controller'],
+      '{controller_name}' => $arguments['controller'],
+      '{application}' => $arguments['application']
     );
+
+    $replacePairs['{path_to_bootstrap}'] = '/../../bootstrap/selenium.php';
+
+    if (isset($options['plugin']))
+    {
+      $replacePairs['{path_to_bootstrap}'] = '/../..'.$replacePairs['{path_to_bootstrap}'];
+    }
 
     $rendered = $this->renderTemplate($template, $replacePairs);
     $this->saveFile($rendered, 'selenium/'.$arguments['application'].'/'.$filename, $options);

@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__).'{dir}/bootstrap/unit.php';
+require_once dirname(__FILE__).'{path_to_bootstrap}';
 
 class unit_{test_class}Test extends sfPHPUnitBaseTestCase
 {

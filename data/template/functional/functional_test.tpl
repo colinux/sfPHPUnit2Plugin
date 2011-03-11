@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__).'/../../bootstrap/functional.php';
+require_once dirname(__FILE__).'{path_to_bootstrap}';
 
 class functional_{controller_class}ActionsTest extends sfPHPUnitBaseFunctionalTestCase
 {
