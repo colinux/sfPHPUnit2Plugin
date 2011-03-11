@@ -33,6 +33,7 @@ class sfPHPUnitGenerateSeleniumTestTask extends sfPHPUnitGenerateBaseTask
     $this->addOptions(array(
     new sfCommandOption('overwrite', null, sfCommandOption::PARAMETER_NONE, 'Forces the task to overwrite any existing files'),
     new sfCommandOption('template', null, sfCommandOption::PARAMETER_REQUIRED, 'A template name, whithout base dir (like selenium) neither extension'),
+    new sfCommandOption('plugin', null, sfCommandOption::PARAMETER_REQUIRED, 'A plugin name, without base dir (like sfPHPUnit)'),
     ));
 
     $this->namespace        = 'phpunit';

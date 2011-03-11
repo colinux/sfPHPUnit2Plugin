@@ -132,6 +132,15 @@ abstract class sfPHPUnitGenerateBaseTask extends sfBaseTask
   protected function saveFile($content, $targetFile, array $options)
   {
     $completeTarget = $this->getTestDir().'/'.$targetFile;
+
+    if (isset($options['plugin']))
+    {
+      $new_path = sfConfig::get('sf_root_dir').DIRECTORY_SEPARATOR.'plugins';
+      $new_path .= DIRECTORY_SEPARATOR.$options['plugin'].'Plugin';
+      $old_path = sfConfig::get('sf_root_dir');
+      $completeTarget = str_replace($old_path, $new_path, $completeTarget);
+    }
+
     $dir = dirname($completeTarget);
     if (!file_exists($dir))
     {

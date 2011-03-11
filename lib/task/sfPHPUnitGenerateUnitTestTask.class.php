@@ -30,7 +30,8 @@ class sfPHPUnitGenerateUnitTestTask extends sfPHPUnitGenerateBaseTask
     $this->addOptions(array(
       new sfCommandOption('overwrite', null, sfCommandOption::PARAMETER_NONE, 'Forces the task to overwrite any existing files'),
       new sfCommandOption('dir', null, sfCommandOption::PARAMETER_REQUIRED, 'A subfolder name, where the unit test should be saved to'),
-      new sfCommandOption('template', null, sfCommandOption::PARAMETER_REQUIRED, 'A template name, whithout base dir (like unit) neither extension'),
+      new sfCommandOption('template', null, sfCommandOption::PARAMETER_REQUIRED, 'A template name, without base dir (like unit) neither extension'),
+      new sfCommandOption('plugin', null, sfCommandOption::PARAMETER_REQUIRED, 'A plugin name, without base dir (like sfPHPUnit)'),
     ));
 
     $this->namespace        = 'phpunit';
