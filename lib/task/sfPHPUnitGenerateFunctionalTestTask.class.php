@@ -30,6 +30,7 @@ class sfPHPUnitGenerateFunctionalTestTask extends sfPHPUnitGenerateBaseTask
 
     $this->addOptions(array(
     new sfCommandOption('overwrite', null, sfCommandOption::PARAMETER_NONE, 'Forces the task to overwrite any existing files'),
+    new sfCommandOption('dir', null, sfCommandOption::PARAMETER_REQUIRED, 'A subfolder name, where the unit test should be saved to'),
     new sfCommandOption('template', null, sfCommandOption::PARAMETER_REQUIRED, 'A template name, whithout base dir (like functional) neither extension'),
     new sfCommandOption('plugin', null, sfCommandOption::PARAMETER_REQUIRED, 'A plugin name, without base dir (like sfPHPUnit)'),
 
@@ -73,16 +74,27 @@ EOF;
     '{application}' => $arguments['application']
     );
 
-  $replacePairs['{path_to_bootstrap}'] = '/../../bootstrap/functional.php';
+    
+    $dir = isset($options['dir'])? '/../../..' : '/../..';
+    
+    $replacePairs['{path_to_bootstrap}'] = $dir.'/bootstrap/functional.php';
 
-  if (isset($options['plugin']))
-  {
-    $replacePairs['{path_to_bootstrap}'] = '/../..'.$replacePairs['{path_to_bootstrap}'];
-  }
+    if (isset($options['plugin']))
+    {
+      $replacePairs['{path_to_bootstrap}'] = $dir.'/../../../../test/phpunit/bootstrap/functional.php';
+    }
 
+    
     $rendered = $this->renderTemplate($template, $replacePairs);
-    $this->saveFile($rendered, 'functional/'.$arguments['application'].'/'.$filename, $options);
 
-    $this->logSection('help', 'run this test with: ./symfony phpunit:test-functional '.$arguments['application'].' '.$arguments['controller']);
+    $this->saveFile($rendered, 'functional/'.$arguments['application'].'/'.($options['dir']? $options['dir'].'/' : '').$filename, $options);
+
+    $optionsStr = '';
+    if ($options['dir'])
+    {
+      $optionsStr .='--dir="'.$options['dir'].'" ';
+    }
+
+    $this->logSection('help', 'run this test with: ./symfony phpunit:test-functional '.$optionsStr.' '.$arguments['application'].' '.$arguments['controller']);
   }
 }

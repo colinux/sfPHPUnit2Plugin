@@ -32,6 +32,7 @@ class sfPHPUnitGenerateSeleniumTestTask extends sfPHPUnitGenerateBaseTask
 
     $this->addOptions(array(
     new sfCommandOption('overwrite', null, sfCommandOption::PARAMETER_NONE, 'Forces the task to overwrite any existing files'),
+    new sfCommandOption('dir', null, sfCommandOption::PARAMETER_REQUIRED, 'A subfolder name, where the unit test should be saved to'),
     new sfCommandOption('template', null, sfCommandOption::PARAMETER_REQUIRED, 'A template name, whithout base dir (like selenium) neither extension'),
     new sfCommandOption('plugin', null, sfCommandOption::PARAMETER_REQUIRED, 'A plugin name, without base dir (like sfPHPUnit)'),
     ));
@@ -74,16 +75,25 @@ EOF;
       '{application}' => $arguments['application']
     );
 
-    $replacePairs['{path_to_bootstrap}'] = '/../../bootstrap/selenium.php';
+    $dir = isset($options['dir'])? '/../../..' : '/../..';
+
+    $replacePairs['{path_to_bootstrap}'] = $dir.'/bootstrap/selenium.php';
 
     if (isset($options['plugin']))
     {
-      $replacePairs['{path_to_bootstrap}'] = '/../..'.$replacePairs['{path_to_bootstrap}'];
+      $replacePairs['{path_to_bootstrap}'] = $dir.'/../../../../test/phpunit/bootstrap/selenium.php';
     }
 
     $rendered = $this->renderTemplate($template, $replacePairs);
-    $this->saveFile($rendered, 'selenium/'.$arguments['application'].'/'.$filename, $options);
 
-    $this->logSection('help', 'run this test with: ./symfony phpunit:test-selenium '.$arguments['application'].' '.$arguments['controller']);
+    $this->saveFile($rendered, 'selenium/'.$arguments['application'].'/'.($options['dir']? $options['dir'].'/' : '').$filename, $options);
+
+    $optionsStr = '';
+    if ($options['dir'])
+    {
+      $optionsStr .='--dir="'.$options['dir'].'" ';
+    }
+
+    $this->logSection('help', 'run this test with: ./symfony phpunit:test-selenium '.$optionsStr.' '.$arguments['application'].' '.$arguments['controller']);
   }
 }
