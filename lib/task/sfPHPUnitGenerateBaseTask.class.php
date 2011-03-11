@@ -147,4 +147,17 @@ abstract class sfPHPUnitGenerateBaseTask extends sfBaseTask
 
     return file_put_contents($completeTarget, $content);
   }
+  
+  protected function getTestDirectories()
+  {
+  	$pc = new ProjectConfiguration();
+  	$project_tests = sfConfig::get('sf_root_dir');
+  	$paths = array_merge(array($project_tests), $pc->getPluginPaths());
+  	$dirs = array();
+  	foreach($paths as $path)
+  	{
+  		$dirs[] = $path;
+  	}
+  	return $dirs;
+  }
 }

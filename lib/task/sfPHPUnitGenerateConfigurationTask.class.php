@@ -53,15 +53,85 @@ EOF;
 
     $template = $this->getTemplate('phpunit.xml.dist.tpl');
 
-    $filepath = sfConfig::get('sf_root_dir').'/phpunit.xml.dist';
+    $dist_file_path = sfConfig::get('sf_root_dir').'/phpunit.xml.dist';
+    $prod_file_path = sfConfig::get('sf_root_dir').'/phpunit.xml';
     $replacePairs = array();
+    
+    $test_directories = $this->getTestDirectories();
+
+	  $unit_xml = $this->getUnitPathXML($test_directories);
+	  $functional_xml = $this->getFunctionalPathXML($test_directories);
+	  $selenium_xml = $this->getSeleniumPathXML($test_directories);
+
+    $replacePairs['{testsuite_xml}'] = trim($unit_xml.$functional_xml.$selenium_xml, "\r\n");
 
     $rendered = $this->renderTemplate($template, $replacePairs);
 
-    if(!file_exists($filepath) || $options['overwrite'])
+    file_put_contents($dist_file_path, $rendered);
+    $this->logSection('file+', basename($dist_file_path));
+
+    if(!file_exists($prod_file_path) || $options['overwrite'])
     {
-      file_put_contents($filepath, $rendered);
-      $this->logSection('file+', 'phpunit.xml.dist');
+      file_put_contents($prod_file_path, $rendered);
+      $this->logSection('file+', basename($prod_file_path));
     }
+  }
+
+  protected function getUnitPathXML($directories)
+  {
+    $paths = $this->getPHPUnitPaths($directories, 'unit');
+    $return = $this->getPHPUnitPathXML('Unit Tests', $paths);
+    return $return;
+  }
+
+  protected function getFunctionalPathXML($directories)
+  {
+    $paths = $this->getPHPUnitPaths($directories, 'functional');
+    $return = $this->getPHPUnitPathXML('Functional Tests', $paths);
+    return $return;
+  }
+  
+  protected function getSeleniumPathXML($directories)
+  {
+    $paths = $this->getPHPUnitPaths($directories, 'selenium');
+    $return = $this->getPHPUnitPathXML('Selenium Tests', $paths);
+    return $return;
+  }
+  
+  protected function getPHPUnitPathXML($name, $directories)
+  {
+    $out = '    <testsuite name="'.$name.'">'."\r\n";
+    if (count($directories) > 0)
+    {
+      foreach($directories as $dir)
+      {
+        $path = $dir;
+        $out .= '      <directory>'.$path.'</directory>'."\r\n";
+      }
+    }
+    $out .= '    </testsuite>'."\r\n";
+    return $out;
+  }
+  
+  protected function getPHPUnitPaths($directories, $type = 'unit')
+  {
+    $return = array();
+	  foreach($directories as $dir)
+	  {
+		  $path = $this->checkPHPUnitPath($dir, $type);
+		  if ($path)
+		  {
+        $return[] = str_replace(sfConfig::get('sf_root_dir').DIRECTORY_SEPARATOR, '', $path);
+		  }
+	  }
+	  return $return;
+  }
+
+  protected function checkPHPUnitPath($path, $type = 'unit')
+  {
+    $path = $path.DIRECTORY_SEPARATOR.'test'.DIRECTORY_SEPARATOR.'phpunit'.DIRECTORY_SEPARATOR.$type;
+    if (file_exists($path) && is_dir($path))
+      return $path;
+    return false;
   }
 }

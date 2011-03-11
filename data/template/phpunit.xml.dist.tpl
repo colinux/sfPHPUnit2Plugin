@@ -6,11 +6,6 @@
   stopOnFailure="true">
   
   <testsuites>
-    <testsuite name="Unit Tests">
-      <directory>test/phpunit/unit/</directory>
-    </testsuite>
-     <testsuite name="Functional Tests">
-       <directory>test/phpunit/functional/</directory>
-    </testsuite>
+{testsuite_xml}
   </testsuites>
 </phpunit>
