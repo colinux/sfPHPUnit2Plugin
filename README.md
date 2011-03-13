@@ -59,6 +59,7 @@ This generation is not done automatically when a new module is generated and has
   * **overwrite**: An existing test case is not overwritten by default. Overwritting is enabled with this option.
   * **dir**: A subfolder the generated test case should be saved in.
   * **template**: A template name to use for this test. Templates files should be placed in "data/sfPHPUnitPlugin/template/<test-type>/"
+  * **plugin**: A plugin name, without base dir (like sfPHPUnit instead of sfPHPUnitPlugin), to generate a test for this plugin.
 
 ### Examples ###
 
@@ -71,6 +72,10 @@ This generation is not done automatically when a new module is generated and has
         $ #test/phpunit/selenium/frontend/homeActionsTest.php
         $ ./symfony phpunit:generate-selenium frontend home
 
+        $ #plugins/anExamplePlugin/test/phpunit/unit/SomeToolsTest.php
+        $ ./symfony phpunit:generate-unit --plugin=anExample SomeTools
+
+## Usage ##
 ## Usage ##
 ### Unit tests ###
 The unit test given in the [official documenation](http://www.symfony-project.org/book/1_2/15-Unit-and-Functional-Testing#chapter_15_unit_tests "Unit and Functional Testing") would look like this:
