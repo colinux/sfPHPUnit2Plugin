@@ -57,7 +57,7 @@ This generation is not done automatically when a new module is generated and has
 
 ### Options ###
   * **overwrite**: An existing test case is not overwritten by default. Overwritting is enabled with this option.
-  * **dir** (unit test only): A subfolder the generated test case should be saved in.
+  * **dir**: A subfolder the generated test case should be saved in.
   * **template**: A template name to use for this test. Templates files should be placed in "data/sfPHPUnitPlugin/template/<test-type>/"
 
 ### Examples ###
