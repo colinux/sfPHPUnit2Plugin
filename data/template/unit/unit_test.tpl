@@ -10,8 +10,8 @@ class unit_{test_class}Test extends sfPHPUnitBaseTestCase
     // lime-like assertions
     //$t->diag('hello world');
     //$t->ok(true, 'test something');
-		
+
     // native assertions
-    //$this->assertTrue(true, 'test something')
+    //$this->assertTrue(true, 'test something');
   }
 }
